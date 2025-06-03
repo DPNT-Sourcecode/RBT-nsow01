@@ -48,9 +48,12 @@ class MyTestRabbitHole(unittest.TestCase):
 class TestDigRoute(unittest.TestCase):
     def test_no_dig(self):
 
+        self.assertEqual(route_matrix)
+
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
 
