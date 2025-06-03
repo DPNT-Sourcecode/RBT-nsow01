@@ -1,4 +1,4 @@
-from enum import Enum
+import pprint
 
 THREE_ROW_FOUR_COLUMN_WARREN = """\
 +---+---+---+---+
@@ -23,19 +23,18 @@ class EnteredFrom:
     BOTTOM = "B"
     LEFT = "L"
     RIGHT = "R"
+    NOT_ENTERED = "N"
 
 
 class RouteMatrix:
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
-        self._list_of_lists = [[] * columns] * columns
+        self._list_of_lists = [[EnteredFrom.NOT_ENTERED] * columns] * rows
 
     def __str__(self):
-        pprint.pformat(self.rows)
+        return pprint.pformat(self._list_of_lists)
 
 def dig_route(rows, columns, digging_moves):
-    return
-
-
+    return RouteMatrix(rows, columns)
 

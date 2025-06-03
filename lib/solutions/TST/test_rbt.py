@@ -1,7 +1,7 @@
 import unittest
 from approvaltests.approvals import verify
 
-from solutions.RBT.rabbit_hole_solution import RabbitHoleSolution
+from solutions.RBT.rabbit_hole_solution import RabbitHoleSolution, dig_route
 
 THREE_ROW_FOUR_COLUMN_WARREN = """\
 +---+---+---+---+
@@ -53,8 +53,3 @@ class TestDigRoute(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
-
-
-
-
-
