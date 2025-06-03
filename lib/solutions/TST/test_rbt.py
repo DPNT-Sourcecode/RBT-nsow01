@@ -39,8 +39,14 @@ class MyTestRabbitHole(unittest.TestCase):
 
         verify(warren)
 
+    def test_first_dig(self):
+        warren = RabbitHoleSolution().rabbit_hole(2, 1, "D", None)
+
+        verify(warren)
+
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
