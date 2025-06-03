@@ -15,7 +15,8 @@ class RabbitHoleSolution:
             return ""
         horizontal_divider = "+---" * columns + "+"
         vertical_divider = "|   " * columns + "|"
-        return (horizontal_divider + "\n" + vertical_divider + "\n") * columns + horizontal_divider
+        return (horizontal_divider + "\n" + vertical_divider + "\n") * rows + horizontal_divider
+
 
 
 
