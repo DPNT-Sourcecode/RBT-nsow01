@@ -33,9 +33,11 @@ class RouteMatrix:
         self._columns_rows = [[EnteredFrom.NOT_ENTERED] * columns] * rows
 
     def __str__(self):
+        " ".join(self._columns_rows[row]) for row in self._columns_rows
         return pprint.pformat(self._columns_rows)
 
 def dig_route(rows, columns, digging_moves):
     return RouteMatrix(rows, columns)
+
 
 
