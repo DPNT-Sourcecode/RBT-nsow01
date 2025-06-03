@@ -32,12 +32,19 @@ class RouteMatrix:
         self.columns = columns
         self._rows_columns = [[EnteredFrom.NOT_ENTERED] * columns] * rows
 
+    def start(self):
+        self._rows_columns[0,0] = EnteredFrom.TOP
+
     def __str__(self):
         return "\n".join(" ".join(row) for row in self._rows_columns)
 
 
 def dig_route(rows, columns, digging_moves):
+    route = RouteMatrix(rows, columns)
+    if digging_moves:
+        route.start()
     return RouteMatrix(rows, columns)
+
 
 
 
