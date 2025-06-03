@@ -30,11 +30,12 @@ class RouteMatrix:
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
-        self._list_of_lists = [[EnteredFrom.NOT_ENTERED] * columns] * rows
+        self._columns_rows = [[EnteredFrom.NOT_ENTERED] * columns] * rows
 
     def __str__(self):
-        return pprint.pformat(self._list_of_lists)
+        return pprint.pformat(self._columns_rows)
 
 def dig_route(rows, columns, digging_moves):
     return RouteMatrix(rows, columns)
+
 

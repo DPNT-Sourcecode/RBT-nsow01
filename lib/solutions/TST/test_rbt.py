@@ -47,9 +47,10 @@ class MyTestRabbitHole(unittest.TestCase):
 
 class TestDigRoute(unittest.TestCase):
     def test_no_dig(self):
-        route_matrix = dig_route(rows=1, columns=1, digging_moves="")
+        route_matrix = dig_route(rows=3, columns=2, digging_moves="")
         verify(route_matrix)
 
 
 if __name__ == '__main__':
     unittest.main()
+
