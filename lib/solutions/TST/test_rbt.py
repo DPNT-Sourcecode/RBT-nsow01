@@ -2,6 +2,11 @@ import unittest
 
 from solutions.RBT.rabbit_hole_solution import RabbitHoleSolution
 
+ONE_ROW_ONE_COLUMN_WARREN = """\
++---+
+|   |
++---+"""
+
 THREE_ROW_FOUR_COLUMN_WARREN = """\
 +---+---+---+---+
 |   |   |   |   |
@@ -25,8 +30,9 @@ class MyTestRabbitHole(unittest.TestCase):
     def test_one_row_one_column(self):
         warren = RabbitHoleSolution().rabbit_hole(1, 1, None, None)
 
-        self.assertEqual(warren, "")
+        self.assertEqual(warren, ONE_ROW_ONE_COLUMN_WARREN)
 
 
 if __name__ == '__main__':
     unittest.main()
+
