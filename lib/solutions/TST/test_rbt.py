@@ -34,9 +34,16 @@ class MyTestRabbitHole(unittest.TestCase):
 
         verify(warren)
 
+    def test_two_columns_one_row(self):
+        warren = RabbitHoleSolution().rabbit_hole(2, 1, None, None)
+
+        verify(warren)
+
+
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
 
