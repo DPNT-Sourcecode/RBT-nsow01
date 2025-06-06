@@ -30,7 +30,7 @@ class RouteMatrix:
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
-        self._rows_columns = [[EnteredFrom.NOT_ENTERED] * columns] * rows
+        self._rows_columns = [[EnteredFrom.NOT_ENTERED for _ in range(columns)] for _ in range(rows)]
 
     def start(self):
         self._rows_columns[0][0] = EnteredFrom.TOP
@@ -44,5 +44,6 @@ def dig_route(rows, columns, digging_moves):
     if digging_moves:
         route.start()
     return route
+
 
 
