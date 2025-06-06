@@ -25,8 +25,7 @@ class RabbitHoleSolution:
         vertical_scale = int(rendering_options.get("VERTICAL_SCALE", "1"))
         rendering_theme = rendering_options.get("RENDERING_THEME", "ASCII")
         if rendering_theme == "UNICODE":
-            horizontal_wall = "━"
-            vertical_wall = "┃"
+            components = UnicodeComponents
         else:
             horizontal_wall = "-"
             vertical_wall = "|"
@@ -35,7 +34,9 @@ class RabbitHoleSolution:
         for row_index in range(rows):
             horizontal_divider = ""
             for column_index in range(route.columns):
-                connector =
+                if route.is_top_left_corner(row_index, column_index):
+                    connector = "┏"
+
                 if route.no_walls_touch_top_left(row_index, column_index):
                     horizontal_divider += " " * (horizontal_scale + 1)
                 elif route.has_tunnelling_at_top_of_cell(row_index, column_index):
@@ -147,6 +148,16 @@ class RouteMatrix:
         return "\n".join(" ".join(format_cell(cell) for cell in row) for row in self._rows_columns)
 
 
+class AsciiComponents:
+    top_left_corner = "+"
+
+
+class UnicodeComponents:
+    top_left_corner = "┏"
+    horizontal_wall = "━"
+    vertical_wall = "┃"
+
+
 def dig_route(rows, columns, digging_moves):
     route = RouteMatrix(rows, columns)
     if digging_moves:
@@ -154,4 +165,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
