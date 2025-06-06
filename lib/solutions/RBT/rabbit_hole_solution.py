@@ -62,7 +62,7 @@ class RouteMatrix:
         self._rows_columns = [[[] for _ in range(columns)] for _ in range(rows)]
 
     def start(self):
-        self._rows_columns[0][0] = EnteredFrom.TOP
+        self._rows_columns[0][0].append(EnteredFrom.TOP)
         self._location = Location(0, 0)
 
     def cell(self, row_index, column_index):
@@ -108,7 +108,7 @@ class RouteMatrix:
         self._rows_columns[self._location.row][self._location.column].append(enter_into_new_cell_from)
 
     def __str__(self):
-        return "\n".join(" ".join(row) for row in self._rows_columns)
+        return "\n".join(" ".join(str(cell) for cell in row) for row in self._rows_columns)
 
 
 def dig_route(rows, columns, digging_moves):
@@ -118,5 +118,6 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
