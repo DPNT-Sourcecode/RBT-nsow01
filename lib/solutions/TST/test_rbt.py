@@ -74,7 +74,7 @@ class MyTestRabbitHole(unittest.TestCase):
 
     def test_explicit_scaling_at_default_levels(self):
         rendering_options = {"HORIZONTAL_SCALE": "3", "VERTICAL_SCALE": "1"}
-        warren = RabbitHoleSolution().rabbit_hole(3, 4, "DRRDDLDDLLLUUURDDD", rendering_options)
+        warren = RabbitHoleSolution().rabbit_hole(3, 4, "DRDLDRRUURDD", rendering_options)
         verify(warren)
 
 
@@ -105,5 +105,6 @@ class TestDigRoute(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
