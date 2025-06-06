@@ -56,6 +56,14 @@ class Location:
 
 
 class RouteMatrix:
+    simplified_entered_from_map = {
+        {EnteredFrom.TOP}: EnteredFrom.TOP,
+        {EnteredFrom.BOTTOM}: EnteredFrom.BOTTOM,
+        {EnteredFrom.LEFT}: EnteredFrom.LEFT,
+        {EnteredFrom.RIGHT}: EnteredFrom.RIGHT,
+        
+    }
+
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
@@ -118,6 +126,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
