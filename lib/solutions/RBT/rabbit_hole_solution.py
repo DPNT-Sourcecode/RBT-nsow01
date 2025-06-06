@@ -16,26 +16,28 @@ class RabbitHoleSolution:
         if not rows or not columns:
             return ""
         route = dig_route(rows, columns, digging_moves)
-        horizontal_divider = ""
-        for column_index in range(route.columns):
-            if route.cell(0, column_index) == EnteredFrom.TOP:
-                horizontal_divider += "+   "
-            else:
-                horizontal_divider += "+---"
-        horizontal_divider += "+"
 
-        vertical_divider = ""
-        for column_index in range(route.columns):
-            if route.cell(0, column_index) == EnteredFrom.LEFT:
-                vertical_divider += "    "
-            else:
-                vertical_divider += "|   "
-        vertical_divider += "|"
-        warren = horizontal_divider + "\n" + vertical_divider + "\n"
+        warren = ""
+        for row_index in range(rows):
+            horizontal_divider = ""
+            for column_index in range(route.columns):
+                if route.cell(row_index, column_index) == EnteredFrom.TOP:
+                    horizontal_divider += "+   "
+                else:
+                    horizontal_divider += "+---"
+            horizontal_divider += "+"
+
+            vertical_divider = ""
+            for column_index in range(route.columns):
+                if route.cell(row_index, column_index) == EnteredFrom.LEFT:
+                    vertical_divider += "    "
+                else:
+                    vertical_divider += "|   "
+            vertical_divider += "|"
+            warren += horizontal_divider + "\n" + vertical_divider + "\n"
 
         solid_horizontal_divider = "+---" * columns + "+"
-        full_vertical_divider = "|   " * columns + "|"
-        return warren + (solid_horizontal_divider + "\n" + full_vertical_divider + "\n") * (rows - 1) + solid_horizontal_divider
+        return warren + solid_horizontal_divider
 
 class EnteredFrom:
     TOP = "↑"
@@ -96,11 +98,4 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
-
-
-
-
-
-
-
 
