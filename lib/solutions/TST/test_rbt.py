@@ -72,6 +72,9 @@ class MyTestRabbitHole(unittest.TestCase):
         warren = RabbitHoleSolution().rabbit_hole(5, 5, "DDDRULDRRULDRRULD", None)
         verify(warren)
 
+    def test_explicit_scaling_at_default_levels(self):
+        warren = RabbitHoleSolution().rabbit_hole(5, 5, "DDDRULDRRULDRRULD", {})
+        verify(warren)
 
 
 class TestDigRoute(unittest.TestCase):
@@ -101,3 +104,4 @@ class TestDigRoute(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
