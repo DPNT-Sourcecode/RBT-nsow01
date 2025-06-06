@@ -61,7 +61,7 @@ class MyTestRabbitHole(unittest.TestCase):
         verify(warren)
 
     def test_fully_dug_2x2(self):
-        warren = RabbitHoleSolution().rabbit_hole(2, 2, "DRDL", None)
+        warren = RabbitHoleSolution().rabbit_hole(2, 2, "DRDLU", None)
         verify(warren)
 
 
@@ -88,9 +88,10 @@ class TestDigRoute(unittest.TestCase):
         verify(route_matrix)
 
     def test_2x2_loop(self):
-        warren = dig_route(2, 2, "DRDL", None)
+        warren = dig_route(rows=2, columns=2, digging_moves="DRDLU")
         verify(warren)
 
 if __name__ == '__main__':
     unittest.main()
+
 

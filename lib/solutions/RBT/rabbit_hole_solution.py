@@ -59,7 +59,7 @@ class RouteMatrix:
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
-        self._rows_columns = [[EnteredFrom.NOT_ENTERED for _ in range(columns)] for _ in range(rows)]
+        self._rows_columns = [[[] for _ in range(columns)] for _ in range(rows)]
 
     def start(self):
         self._rows_columns[0][0] = EnteredFrom.TOP
@@ -105,7 +105,7 @@ class RouteMatrix:
         else:
             raise ValueError("Invalid direction")
 
-        self._rows_columns[self._location.row][self._location.column] = enter_into_new_cell_from
+        self._rows_columns[self._location.row][self._location.column].append(enter_into_new_cell_from)
 
     def __str__(self):
         return "\n".join(" ".join(row) for row in self._rows_columns)
@@ -118,4 +118,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
