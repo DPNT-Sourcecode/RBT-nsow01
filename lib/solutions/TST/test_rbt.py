@@ -1,7 +1,7 @@
 import unittest
 from approvaltests.approvals import verify
 
-from solutions.RBT.rabbit_hole_solution import RabbitHoleSolution, dig_route
+from solutions.RBT.rabbit_hole_solution import Plan, RabbitHoleSolution, dig_route
 
 THREE_ROW_FOUR_COLUMN_WARREN = """\
 +---+---+---+---+
@@ -113,5 +113,11 @@ class TestDigRoute(unittest.TestCase):
         warren = dig_route(rows=2, columns=2, digging_moves="DRDLU")
         verify(warren)
 
+class TestPlan(unittest.TestCase):
+    def test_1x1(self):
+        plan = Plan(1, 1)
+        plan.cell()
+
 if __name__ == '__main__':
     unittest.main()
+
