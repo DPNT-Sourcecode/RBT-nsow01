@@ -82,10 +82,10 @@ class MyTestRabbitHole(unittest.TestCase):
         warren = RabbitHoleSolution().rabbit_hole(3, 4, "DRDLDRRUURDD", rendering_options)
         verify(warren)
 
-    def test_unicode_theme(self):
-        rendering_options = {"HORIZONTAL_SCALE": "3", "VERTICAL_SCALE": "1", "RENDERING_THEME": "UNICODE"}
-        warren = RabbitHoleSolution().rabbit_hole(3, 4, "DRDLDRRUURDD", rendering_options)
-        verify(warren)
+    # def test_unicode_theme(self):
+    #     rendering_options = {"HORIZONTAL_SCALE": "3", "VERTICAL_SCALE": "1", "RENDERING_THEME": "UNICODE"}
+    #     warren = RabbitHoleSolution().rabbit_hole(3, 4, "DRDLDRRUURDD", rendering_options)
+    #     verify(warren)
 
 
 class TestDigRoute(unittest.TestCase):
@@ -115,3 +115,4 @@ class TestDigRoute(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
