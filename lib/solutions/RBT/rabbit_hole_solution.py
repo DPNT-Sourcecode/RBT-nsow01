@@ -26,8 +26,10 @@ class RabbitHoleSolution:
         rendering_theme = rendering_options.get("RENDERING_THEME", "ASCII")
         if rendering_theme == "UNICODE":
             horizontal_wall = "━"
+            vertical_wall = "┃"
         else:
             horizontal_wall = "-"
+            vertical_wall = "|"
 
         warren = ""
         for row_index in range(rows):
@@ -47,8 +49,8 @@ class RabbitHoleSolution:
                 if route.has_tunnelling_at_left_of_cell(row_index, column_index):
                     vertical_divider += " " * (horizontal_scale + 1)
                 else:
-                    vertical_divider += "|" + " " * horizontal_scale
-            vertical_divider += "|"
+                    vertical_divider += vertical_wall + " " * horizontal_scale
+            vertical_divider += vertical_wall
             warren += horizontal_divider + "\n" + (vertical_divider + "\n") * vertical_scale
 
         solid_horizontal_divider = ("+" + horizontal_wall * horizontal_scale) * columns + "+"
@@ -151,6 +153,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
