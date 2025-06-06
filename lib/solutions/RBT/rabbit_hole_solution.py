@@ -47,9 +47,9 @@ class RabbitHoleSolution:
             vertical_divider = ""
             for column_index in range(route.columns):
                 if route.has_tunnelling_at_left_of_cell(row_index, column_index):
-                    vertical_divider += "    "
+                    vertical_divider += " " * (horizontal_scale + 1)
                 else:
-                    vertical_divider += "|   "
+                    vertical_divider += "|" + " " * horizontal_scale
             vertical_divider += "|"
             warren += horizontal_divider + "\n" + (vertical_divider + "\n") * vertical_scale
 
@@ -143,4 +143,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
