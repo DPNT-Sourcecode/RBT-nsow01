@@ -23,7 +23,8 @@ class RabbitHoleSolution:
             for column_index in range(route.columns):
                 if (
                     route.has_tunnelling_at_left_of_cell(row_index, column_index)
-                    and route.has_tunnelling_at_left_of_cell(row_index, column_index + 1)
+                    and route.has_row_above(row_index)
+                    and route.has_tunnelling_at_left_of_cell(row_index-1, column_index)
                 ):
                     horizontal_divider += " "
                 else:
@@ -148,6 +149,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
