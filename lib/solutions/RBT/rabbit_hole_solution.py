@@ -29,12 +29,7 @@ class RabbitHoleSolution:
             horizontal_divider = ""
             for column_index in range(route.columns):
                 if (
-                    route.has_tunnelling_at_left_of_cell(row_index, column_index)
-                    and route.has_row_above(row_index)
-                    and route.has_tunnelling_at_left_of_cell(row_index-1, column_index)
-                    and route.has_tunnelling_at_top_of_cell(row_index, column_index)
-                    and route.has_column_to_left(column_index)
-                    and route.has_tunnelling_at_top_of_cell(row_index, column_index-1)
+                        self.no_walls_touch_top_left(column_index, route, row_index)
                 ):
                     horizontal_divider += " " * (horizontal_scale + 1)
                 elif route.has_tunnelling_at_top_of_cell(row_index, column_index):
@@ -56,6 +51,13 @@ class RabbitHoleSolution:
         solid_horizontal_divider = ("+" + "-" * horizontal_scale) * columns + "+"
         return warren + solid_horizontal_divider
 
+    def no_walls_touch_top_left(self, column_index, route, row_index):
+        return route.has_tunnelling_at_left_of_cell(row_index, column_index)
+        and route.has_row_above(row_index)
+        and route.has_tunnelling_at_left_of_cell(row_index - 1, column_index)
+        and route.has_tunnelling_at_top_of_cell(row_index, column_index)
+        and route.has_column_to_left(column_index)
+        and route.has_tunnelling_at_top_of_cell(row_index, column_index - 1)
 
 
 class EnteredFrom:
@@ -143,5 +145,6 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
