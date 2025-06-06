@@ -29,9 +29,7 @@ class RabbitHoleSolution:
 
             vertical_divider = ""
             for column_index in range(route.columns):
-                if route.cell(row_index, column_index) == EnteredFrom.LEFT or (
-                    route.has_column_to_left(column_index) and route.cell_to_left(row_index, column_index) == EnteredFrom.RIGHT
-                ):
+                if route.has_tunnelling_at_left_of_cell(row_index, column_index):
                     vertical_divider += "    "
                 else:
                     vertical_divider += "|   "
@@ -86,6 +84,11 @@ class RouteMatrix:
         return self.cell(row_index, column_index) == EnteredFrom.TOP or (
                 self.has_row_above(row_index) and self.cell_below(row_index, column_index) == EnteredFrom.BOTTOM)
 
+    def has_tunnelling_at_left_of_cell(self, row_index, column_index):
+        return self.cell(row_index, column_index) == EnteredFrom.LEFT or (
+                self.has_column_to_left(column_index)
+                and self.cell_to_left(row_index, column_index) == EnteredFrom.RIGHT)
+
     def move(self, direction):
         if direction == "R":
             self._location.column += 1
@@ -115,6 +118,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
