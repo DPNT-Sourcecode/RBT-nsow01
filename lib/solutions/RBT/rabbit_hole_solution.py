@@ -24,11 +24,18 @@ class RabbitHoleSolution:
                 horizontal_divider += "+---"
         horizontal_divider += "+"
 
-        vertical_divider = "|   " * columns + "|"
+        vertical_divider = ""
+        for column_index in range(route.columns):
+            if route.cell(0, column_index) == EnteredFrom.LEFT:
+                vertical_divider += "|   "
+            else:
+                vertical_divider += "    "
+        vertical_divider += "|"
         warren = horizontal_divider + "\n" + vertical_divider + "\n"
 
         solid_horizontal_divider = "+---" * columns + "+"
-        return warren + (solid_horizontal_divider + "\n" + vertical_divider + "\n") * (rows - 1) + solid_horizontal_divider
+        full_vertical_divider = "|   " * columns + "|"
+        return warren + (solid_horizontal_divider + "\n" + full_vertical_divider + "\n") * (rows - 1) + solid_horizontal_divider
 
 class EnteredFrom:
     TOP = "↑"
@@ -89,6 +96,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
