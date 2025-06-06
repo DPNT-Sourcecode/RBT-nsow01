@@ -122,9 +122,6 @@ class RouteMatrix:
                 and self.has_tunnelling_at_top_of_cell(row_index, column_index - 1)
         )
 
-    def top_left_corner_has_horizontal_wall_to_left(self, row_index, column_index):
-        return self.has_column_to_left(column_index) and not self.has_tunnelling_at_left_of_cell(row_index, column_index)
-
     def move(self, direction):
         if direction == "R":
             self._location.column += 1
@@ -156,6 +153,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
