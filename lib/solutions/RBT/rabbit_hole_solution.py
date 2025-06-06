@@ -23,7 +23,7 @@ class RabbitHoleSolution:
 
         horizontal_scale = int(rendering_options.get("HORIZONTAL_SCALE", "3"))
         vertical_scale = int(rendering_options.get("VERTICAL_SCALE", "1"))
-        rendering_theme = rendering_options.get("RENDER_THEME", "ASCII")
+        rendering_theme = rendering_options.get("RENDERING_THEME", "ASCII")
         if rendering_theme == "UNICODE":
             horizontal_wall = "━"
         else:
@@ -151,6 +151,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
