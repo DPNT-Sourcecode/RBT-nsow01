@@ -81,8 +81,8 @@ class RouteMatrix:
         return column_index > 0
 
     def has_tunnelling_at_top_of_cell(self, row_index, column_index):
-        return self.cell(row_index, column_index) == EnteredFrom.TOP or (
-                self.has_row_above(row_index) and self.cell_below(row_index, column_index) == EnteredFrom.BOTTOM)
+        return EnteredFrom.TOP in self.cell(row_index, column_index) or (
+                self.has_row_above(row_index) and EnteredFrom.BOTTOM in self.cell_below(row_index, column_index))
 
     def has_tunnelling_at_left_of_cell(self, row_index, column_index):
         return self.cell(row_index, column_index) == EnteredFrom.LEFT or (
@@ -120,6 +120,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
