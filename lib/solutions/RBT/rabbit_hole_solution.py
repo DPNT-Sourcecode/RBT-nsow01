@@ -1,3 +1,4 @@
+from dataclasses import dataclass
 import pprint
 
 THREE_ROW_FOUR_COLUMN_WARREN = """\
@@ -26,6 +27,12 @@ class EnteredFrom:
     NOT_ENTERED = "o"
 
 
+@dataclass
+class Location:
+    row: int = 0
+    column: int = 0
+
+
 class RouteMatrix:
     def __init__(self, rows, columns):
         self.rows = rows
@@ -34,6 +41,10 @@ class RouteMatrix:
 
     def start(self):
         self._rows_columns[0][0] = EnteredFrom.TOP
+        self.location = Location(0, 0)
+
+    def move(self):
+
 
     def __str__(self):
         return "\n".join(" ".join(row) for row in self._rows_columns)
@@ -42,10 +53,11 @@ class RouteMatrix:
 def dig_route(rows, columns, digging_moves):
     route = RouteMatrix(rows, columns)
     if digging_moves:
-        digging_moves_list = digging_moves.split(",")
-        digging_moves_list.pop(0)
         route.start()
+        for move in digging_moves[1:]:
+            route.move(move)
     return route
+
 
 
 
