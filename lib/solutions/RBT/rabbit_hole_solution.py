@@ -21,8 +21,7 @@ class RabbitHoleSolution:
         for row_index in range(rows):
             horizontal_divider = ""
             for column_index in range(route.columns):
-                if route.cell(row_index, column_index) == EnteredFrom.TOP or (
-                        route.has_row_above(row_index) and route.cell_below(row_index, column_index) == EnteredFrom.BOTTOM):
+                if route.has_tunnelling_at_top_of_cell(row_index, column_index):
                     horizontal_divider += "+   "
                 else:
                     horizontal_divider += "+---"
@@ -41,6 +40,8 @@ class RabbitHoleSolution:
 
         solid_horizontal_divider = "+---" * columns + "+"
         return warren + solid_horizontal_divider
+
+
 
 class EnteredFrom:
     TOP = "↑"
@@ -81,6 +82,10 @@ class RouteMatrix:
     def has_column_to_left(self, column_index):
         return column_index > 0
 
+    def has_tunnelling_at_top_of_cell(self, row_index, column_index):
+        return self.cell(row_index, column_index) == EnteredFrom.TOP or (
+                self.has_row_above(row_index) and self.cell_below(row_index, column_index) == EnteredFrom.BOTTOM)
+
     def move(self, direction):
         if direction == "R":
             self._location.column += 1
@@ -110,6 +115,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
