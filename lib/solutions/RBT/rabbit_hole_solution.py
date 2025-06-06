@@ -27,22 +27,22 @@ class RabbitHoleSolution:
         if rendering_theme == "UNICODE":
             components = UnicodeComponents
         else:
-            horizontal_wall = "-"
-            vertical_wall = "|"
+            components = AsciiComponents
 
         warren = ""
         for row_index in range(rows):
             horizontal_divider = ""
             for column_index in range(route.columns):
                 if route.is_top_left_corner(row_index, column_index):
-                    connector = "┏"
-
+                    connector = components.top_left_corner
+                else:
+                    connector = "+"
                 if route.no_walls_touch_top_left(row_index, column_index):
                     horizontal_divider += " " * (horizontal_scale + 1)
                 elif route.has_tunnelling_at_top_of_cell(row_index, column_index):
                     horizontal_divider += "+" + " " * horizontal_scale
                 else:
-                    horizontal_divider += "+" + horizontal_wall * horizontal_scale
+                    horizontal_divider += "+" + components.horizontal_wall * horizontal_scale
 
             horizontal_divider += "+"
 
@@ -51,11 +51,11 @@ class RabbitHoleSolution:
                 if route.has_tunnelling_at_left_of_cell(row_index, column_index):
                     vertical_divider += " " * (horizontal_scale + 1)
                 else:
-                    vertical_divider += vertical_wall + " " * horizontal_scale
-            vertical_divider += vertical_wall
+                    vertical_divider += components.vertical_wall + " " * horizontal_scale
+            vertical_divider += components.vertical_wall
             warren += horizontal_divider + "\n" + (vertical_divider + "\n") * vertical_scale
 
-        solid_horizontal_divider = ("+" + horizontal_wall * horizontal_scale) * columns + "+"
+        solid_horizontal_divider = ("+" + components.horizontal_wall * horizontal_scale) * columns + "+"
         return warren + solid_horizontal_divider
 
 
@@ -149,13 +149,15 @@ class RouteMatrix:
 
 
 class AsciiComponents:
+    horizontal_wall = "-"
+    vertical_wall = "|"
     top_left_corner = "+"
 
 
 class UnicodeComponents:
-    top_left_corner = "┏"
     horizontal_wall = "━"
     vertical_wall = "┃"
+    top_left_corner = "┏"
 
 
 def dig_route(rows, columns, digging_moves):
@@ -165,5 +167,6 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
