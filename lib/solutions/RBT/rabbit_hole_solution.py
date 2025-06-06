@@ -25,11 +25,9 @@ class RabbitHoleSolution:
                     route.has_tunnelling_at_left_of_cell(row_index, column_index)
                     and route.has_row_above(row_index)
                     and route.has_tunnelling_at_left_of_cell(row_index-1, column_index)
-                    and route.has_tunnelling_at_left_of_cell(row_index+1, column_index)
                     and route.has_tunnelling_at_top_of_cell(row_index, column_index)
                     and route.has_column_to_left(column_index)
                     and route.has_tunnelling_at_top_of_cell(row_index, column_index-1)
-                    and False
                 ):
                     horizontal_divider += "    "
                 elif route.has_tunnelling_at_top_of_cell(row_index, column_index):
@@ -144,4 +142,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 

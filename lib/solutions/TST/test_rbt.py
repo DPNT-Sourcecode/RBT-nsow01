@@ -64,6 +64,10 @@ class MyTestRabbitHole(unittest.TestCase):
         warren = RabbitHoleSolution().rabbit_hole(2, 2, "DRDLU", None)
         verify(warren)
 
+    def test_fully_room_in_dug_4x4(self):
+        warren = RabbitHoleSolution().rabbit_hole(4, 4, "DDRRDLU", None)
+        verify(warren)
+
 
 
 class TestDigRoute(unittest.TestCase):
@@ -93,3 +97,4 @@ class TestDigRoute(unittest.TestCase):
 
 if __name__ == '__main__':
     unittest.main()
+
