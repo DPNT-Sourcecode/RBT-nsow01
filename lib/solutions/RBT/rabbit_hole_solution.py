@@ -19,11 +19,11 @@ class RabbitHoleSolution:
         return (horizontal_divider + "\n" + vertical_divider + "\n") * rows + horizontal_divider
 
 class EnteredFrom:
-    TOP = "T"
-    BOTTOM = "B"
-    LEFT = "L"
-    RIGHT = "R"
-    NOT_ENTERED = "N"
+    TOP = "↑"
+    BOTTOM = "↓"
+    LEFT = "←"
+    RIGHT = "→"
+    NOT_ENTERED = " "
 
 
 class RouteMatrix:
@@ -44,6 +44,7 @@ def dig_route(rows, columns, digging_moves):
     if digging_moves:
         route.start()
     return route
+
 
 
 
