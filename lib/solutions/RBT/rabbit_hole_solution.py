@@ -16,8 +16,8 @@ class RabbitHoleSolution:
         if not rows or not columns:
             return ""
         route = dig_route(rows, columns, digging_moves)
-        row = 0
         column = 0
+        for cell in route.row(0):
         horizontal_divider = "+---" * columns + "+"
         vertical_divider = "|   " * columns + "|"
         return (horizontal_divider + "\n" + vertical_divider + "\n") * rows + horizontal_divider
@@ -75,6 +75,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
