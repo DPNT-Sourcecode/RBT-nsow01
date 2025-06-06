@@ -21,10 +21,18 @@ class RabbitHoleSolution:
         for row_index in range(rows):
             horizontal_divider = ""
             for column_index in range(route.columns):
-                if route.has_tunnelling_at_top_of_cell(row_index, column_index):
-                    horizontal_divider += "+   "
+                if (
+                    route.has_tunnelling_at_left_of_cell(row_index, column_index)
+                    and route.has_tunnelling_at_left_of_cell(row_index, column_index + 1)
+                ):
+                    horizontal_divider += " "
                 else:
-                    horizontal_divider += "+---"
+                    horizontal_divider += "+"
+
+                if route.has_tunnelling_at_top_of_cell(row_index, column_index):
+                    horizontal_divider += "   "
+                else:
+                    horizontal_divider += "---"
 
             # if no wall on right and cell above has no wall on right
             # if (
@@ -140,6 +148,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
