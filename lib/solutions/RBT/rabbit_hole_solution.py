@@ -72,8 +72,15 @@ class Location:
 
 class Plan:
     def __init__(self, rows, columns):
-        self.location = location
         self._rows_columns = [[[] for _ in range(columns+1)] for _ in range(rows+1)]
+        self._row_max_index = rows
+        self._column_max_index = columns
+
+    def cell(self, row_index, column_index):
+        return self._rows_columns[row_index][column_index]
+
+    def __str__(self):
+        return "\n".join(" ".join(cell for cell in row) for row in self._rows_columns)
 
 class RouteMatrix:
     def __init__(self, rows, columns):
@@ -171,6 +178,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
