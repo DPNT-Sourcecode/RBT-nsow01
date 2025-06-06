@@ -63,11 +63,12 @@ class TestDigRoute(unittest.TestCase):
         verify(route_matrix)
 
     def test_3x1_DDD(self):
-        route_matrix = dig_route(rows=3, columns=4, digging_moves="DDD")
+        route_matrix = dig_route(rows=3, columns=1, digging_moves="DDD")
         verify(route_matrix)
 
 
 if __name__ == '__main__':
     unittest.main()
+
 
 
