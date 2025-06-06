@@ -23,7 +23,7 @@ class EnteredFrom:
     BOTTOM = "↓"
     LEFT = "←"
     RIGHT = "→"
-    NOT_ENTERED = " "
+    NOT_ENTERED = "o"
 
 
 class RouteMatrix:
@@ -44,6 +44,7 @@ def dig_route(rows, columns, digging_moves):
     if digging_moves:
         route.start()
     return route
+
 
 
 
