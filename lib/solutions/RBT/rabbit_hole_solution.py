@@ -45,8 +45,3 @@ def dig_route(rows, columns, digging_moves):
         route.start()
     return RouteMatrix(rows, columns)
 
-
-
-
-
-
