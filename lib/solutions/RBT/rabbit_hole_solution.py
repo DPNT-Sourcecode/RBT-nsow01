@@ -46,6 +46,12 @@ class RouteMatrix:
         self._rows_columns[0][0] = EnteredFrom.TOP
         self._location = Location(0, 0)
 
+    def cell(self, row_index, column_index):
+        return self._rows_columns[row_index][column_index]
+
+    def row(self, column_index):
+        return self._rows_columns[row]
+
     def move(self, direction):
         if direction == "R":
             self._location.column += 1
@@ -75,7 +81,4 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
-
-
-
 
