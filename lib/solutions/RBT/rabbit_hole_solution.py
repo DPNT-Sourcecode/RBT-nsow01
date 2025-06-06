@@ -33,10 +33,6 @@ class RabbitHoleSolution:
         for row_index in range(rows):
             horizontal_divider = ""
             for column_index in range(route.columns):
-                if route.is_top_left_corner(row_index, column_index):
-                    connector = components.top_left_corner
-                else:
-                    connector = "+"
                 if route.no_walls_touch_top_left(row_index, column_index):
                     horizontal_divider += " " * (horizontal_scale + 1)
                 elif route.has_tunnelling_at_top_of_cell(row_index, column_index):
@@ -170,6 +166,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
