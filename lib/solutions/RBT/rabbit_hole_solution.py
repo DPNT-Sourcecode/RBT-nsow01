@@ -41,10 +41,10 @@ class RouteMatrix:
 
     def start(self):
         self._rows_columns[0][0] = EnteredFrom.TOP
-        self.location = Location(0, 0)
+        self._location = Location(0, 0)
 
-    def move(self):
-
+    def move(self, direction):
+        self._location.move()
 
     def __str__(self):
         return "\n".join(" ".join(row) for row in self._rows_columns)
@@ -54,9 +54,10 @@ def dig_route(rows, columns, digging_moves):
     route = RouteMatrix(rows, columns)
     if digging_moves:
         route.start()
-        for move in digging_moves[1:]:
-            route.move(move)
+        for direction in digging_moves[1:]:
+            route.move(direction)
     return route
+
 
 
 
