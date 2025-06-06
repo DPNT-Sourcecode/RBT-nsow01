@@ -28,9 +28,7 @@ class RabbitHoleSolution:
         for row_index in range(rows):
             horizontal_divider = ""
             for column_index in range(route.columns):
-                if (
-                        self.no_walls_touch_top_left(column_index, route, row_index)
-                ):
+                if route.no_walls_touch_top_left(row_index, column_index):
                     horizontal_divider += " " * (horizontal_scale + 1)
                 elif route.has_tunnelling_at_top_of_cell(row_index, column_index):
                     horizontal_divider += "+" + " " * horizontal_scale
@@ -51,13 +49,6 @@ class RabbitHoleSolution:
         solid_horizontal_divider = ("+" + "-" * horizontal_scale) * columns + "+"
         return warren + solid_horizontal_divider
 
-    def no_walls_touch_top_left(self, column_index, route, row_index):
-        return route.has_tunnelling_at_left_of_cell(row_index, column_index)
-        and route.has_row_above(row_index)
-        and route.has_tunnelling_at_left_of_cell(row_index - 1, column_index)
-        and route.has_tunnelling_at_top_of_cell(row_index, column_index)
-        and route.has_column_to_left(column_index)
-        and route.has_tunnelling_at_top_of_cell(row_index, column_index - 1)
 
 
 class EnteredFrom:
@@ -114,6 +105,16 @@ class RouteMatrix:
                 self.has_column_to_left(column_index)
                 and EnteredFrom.RIGHT in self.cell_to_left(row_index, column_index))
 
+    def no_walls_touch_top_left(self, row_index, column_index):
+        return (
+                self.has_tunnelling_at_left_of_cell(row_index, column_index)
+                and self.has_row_above(row_index)
+                and self.has_tunnelling_at_left_of_cell(row_index - 1, column_index)
+                and self.has_tunnelling_at_top_of_cell(row_index, column_index)
+                and self.has_column_to_left(column_index)
+                and self.has_tunnelling_at_top_of_cell(row_index, column_index - 1)
+        )
+
     def move(self, direction):
         if direction == "R":
             self._location.column += 1
@@ -145,6 +146,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
