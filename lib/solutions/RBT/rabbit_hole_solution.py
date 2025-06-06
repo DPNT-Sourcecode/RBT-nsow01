@@ -27,7 +27,13 @@ class RabbitHoleSolution:
                     horizontal_divider += "+---"
 
             # if no wall on right and cell above has no wall on right
-            horizontal_divider += "+"
+            if (
+                    route.has_tunnelling_at_right_of_cell(row_index, column_index)
+                    and route.has_tunnelling_at_right_of_cell(row_index-1, column_index)
+            ):
+                horizontal_divider += " "
+            else:
+                horizontal_divider += "+"
 
             vertical_divider = ""
             for column_index in range(route.columns):
@@ -134,4 +140,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
