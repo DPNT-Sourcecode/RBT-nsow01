@@ -56,14 +56,6 @@ class Location:
 
 
 class RouteMatrix:
-    simplified_entered_from_map = {
-        {EnteredFrom.TOP}: EnteredFrom.TOP,
-        {EnteredFrom.BOTTOM}: EnteredFrom.BOTTOM,
-        {EnteredFrom.LEFT}: EnteredFrom.LEFT,
-        {EnteredFrom.RIGHT}: EnteredFrom.RIGHT,
-        
-    }
-
     def __init__(self, rows, columns):
         self.rows = rows
         self.columns = columns
@@ -116,6 +108,8 @@ class RouteMatrix:
         self._rows_columns[self._location.row][self._location.column].append(enter_into_new_cell_from)
 
     def __str__(self):
+        def format_cell(cell):
+            :
         return "\n".join(" ".join(str(cell) for cell in row) for row in self._rows_columns)
 
 
@@ -126,6 +120,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
