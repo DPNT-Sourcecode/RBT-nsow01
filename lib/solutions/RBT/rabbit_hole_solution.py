@@ -96,6 +96,9 @@ class RouteMatrix:
     def cell_to_right(self, row_index, column_index):
         return self.cell(row_index, column_index + 1)
 
+    def is_top_left_corner(self, row_index, column_index):
+        return row_index == 0 and column_index == 0
+
     def has_row_above(self, row_index):
         return row_index > 0
 
@@ -167,6 +170,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
