@@ -60,6 +60,10 @@ class MyTestRabbitHole(unittest.TestCase):
         warren = RabbitHoleSolution().rabbit_hole(3, 4, "DRDLDRRUURDD", None)
         verify(warren)
 
+    def test_fully_dug_2x2(self):
+        warren = RabbitHoleSolution().rabbit_hole(2, 2, "DLDRU", None)
+        verify(warren)
+
 
 
 class TestDigRoute(unittest.TestCase):
