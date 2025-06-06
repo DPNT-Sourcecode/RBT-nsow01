@@ -18,8 +18,11 @@ class RabbitHoleSolution:
 
         route = dig_route(rows, columns, digging_moves)
 
-        horizontal_scale = rendering_options.get("HORIZONTAL_SCALE", 3)
-        vertical_scale = rendering_options.get("VERTICAL_SCALE", 1)
+        if rendering_options is None:
+            rendering_options = {}
+
+        horizontal_scale = int(rendering_options.get("HORIZONTAL_SCALE", "3"))
+        vertical_scale = int(rendering_options.get("VERTICAL_SCALE", "1"))
 
         warren = ""
         for row_index in range(rows):
@@ -33,11 +36,11 @@ class RabbitHoleSolution:
                     and route.has_column_to_left(column_index)
                     and route.has_tunnelling_at_top_of_cell(row_index, column_index-1)
                 ):
-                    horizontal_divider += "    "
+                    horizontal_divider += " " * (horizontal_scale + 1)
                 elif route.has_tunnelling_at_top_of_cell(row_index, column_index):
-                    horizontal_divider += "+   "
+                    horizontal_divider += "+" + " " * horizontal_scale
                 else:
-                    horizontal_divider += "+---"
+                    horizontal_divider += "+" + "-" * horizontal_scale
 
             horizontal_divider += "+"
 
@@ -140,5 +143,6 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
