@@ -58,6 +58,11 @@ class TestDigRoute(unittest.TestCase):
         route_matrix = dig_route(rows=3, columns=2, digging_moves="DR")
         verify(route_matrix)
 
+    def test_3x4_DRDLDRRUURDD(self):
+        route_matrix = dig_route(rows=3, columns=4, digging_moves="DRDLDRRUURDD")
+        verify(route_matrix)
+
 
 if __name__ == '__main__':
     unittest.main()
+

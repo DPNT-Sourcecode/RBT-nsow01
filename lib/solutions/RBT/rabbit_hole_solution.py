@@ -47,6 +47,17 @@ class RouteMatrix:
         if direction == "R":
             self._location.column += 1
             enter_into_new_cell_from = EnteredFrom.LEFT
+        elif direction == "L":
+            self._location.column -= 1
+            enter_into_new_cell_from = EnteredFrom.RIGHT
+        elif direction == "U":
+            self._location.row -= 1
+            enter_into_new_cell_from = EnteredFrom.BOTTOM
+        elif direction == "D":
+            self._location.row += 1
+            enter_into_new_cell_from = EnteredFrom.TOP
+        else:
+            raise ValueError("Invalid direction")
 
         self._rows_columns[self._location.row][self._location.column] = enter_into_new_cell_from
 
@@ -61,4 +72,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
