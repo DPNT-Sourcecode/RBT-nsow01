@@ -22,7 +22,7 @@ class RabbitHoleSolution:
             horizontal_divider = ""
             for column_index in range(route.columns):
                 if route.cell(row_index, column_index) == EnteredFrom.TOP or (
-                        row_index > 0 and route.cell(row_index - 1, column_index) == EnteredFrom.BOTTOM):
+                        route.has_cell_above(row_index) and route.cell(row_index - 1, column_index) == EnteredFrom.BOTTOM):
                     horizontal_divider += "+   "
                 else:
                     horizontal_divider += "+---"
@@ -69,6 +69,9 @@ class RouteMatrix:
     def cell(self, row_index, column_index):
         return self._rows_columns[row_index][column_index]
 
+    def has_cell_above(self, row_index):
+        return row_index > 0
+
     def move(self, direction):
         if direction == "R":
             self._location.column += 1
@@ -98,6 +101,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
