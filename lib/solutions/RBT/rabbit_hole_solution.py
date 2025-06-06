@@ -82,6 +82,9 @@ class RouteMatrix:
     def has_column_to_left(self, column_index):
         return column_index > 0
 
+    def cell_has_wall_to_right(self, row_index, column_index):
+        return self
+
     def has_tunnelling_at_top_of_cell(self, row_index, column_index):
         return EnteredFrom.TOP in self.cell(row_index, column_index) or (
                 self.has_row_above(row_index) and EnteredFrom.BOTTOM in self.cell_below(row_index, column_index))
@@ -122,6 +125,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
