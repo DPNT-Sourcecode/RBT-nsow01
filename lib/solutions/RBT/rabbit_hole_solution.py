@@ -85,9 +85,9 @@ class RouteMatrix:
                 self.has_row_above(row_index) and EnteredFrom.BOTTOM in self.cell_below(row_index, column_index))
 
     def has_tunnelling_at_left_of_cell(self, row_index, column_index):
-        return self.cell(row_index, column_index) == EnteredFrom.LEFT or (
+        return EnteredFrom.LEFT in self.cell(row_index, column_index) or (
                 self.has_column_to_left(column_index)
-                and self.cell_to_left(row_index, column_index) == EnteredFrom.RIGHT)
+                and EnteredFrom.RIGHT in self.cell_to_left(row_index, column_index))
 
     def move(self, direction):
         if direction == "R":
@@ -120,10 +120,4 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
-
-
-
-
-
-
 
