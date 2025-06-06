@@ -55,9 +55,11 @@ class TestDigRoute(unittest.TestCase):
         verify(route_matrix)
 
     def test_second_move(self):
-        route_matrix = dig_route(rows=3, columns=2, digging_moves="D")
+        route_matrix = dig_route(rows=3, columns=2, digging_moves="DR")
+        verify(route_matrix)
 
 
 if __name__ == '__main__':
     unittest.main()
+
 

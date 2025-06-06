@@ -42,8 +42,11 @@ class RouteMatrix:
 def dig_route(rows, columns, digging_moves):
     route = RouteMatrix(rows, columns)
     if digging_moves:
+        digging_moves_list = digging_moves.split(",")
+        digging_moves_list.pop(0)
         route.start()
     return route
+
 
 
 
