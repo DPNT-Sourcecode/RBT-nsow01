@@ -51,9 +51,9 @@ class RabbitHoleSolution:
                 else:
                     vertical_divider += "|   "
             vertical_divider += "|"
-            warren += horizontal_divider + "\n" + vertical_divider * vertical_scale + "\n"
+            warren += horizontal_divider + "\n" + (vertical_divider + "\n") * vertical_scale
 
-        solid_horizontal_divider = "+---" * columns + "+"
+        solid_horizontal_divider = ("+" + "-" * horizontal_scale) * columns + "+"
         return warren + solid_horizontal_divider
 
 
@@ -143,6 +143,7 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
 
