@@ -15,7 +15,11 @@ class RabbitHoleSolution:
     def rabbit_hole(self, rows, columns, digging_moves, rendering_options):
         if not rows or not columns:
             return ""
+
         route = dig_route(rows, columns, digging_moves)
+
+        horizontal_scale = rendering_options.get("HORIZONTAL_SCALE", 3)
+        vertical_scale = rendering_options.get("VERTICAL_SCALE", 1)
 
         warren = ""
         for row_index in range(rows):
@@ -136,4 +140,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
