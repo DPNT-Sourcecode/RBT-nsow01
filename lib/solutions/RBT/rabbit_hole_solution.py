@@ -21,7 +21,8 @@ class RabbitHoleSolution:
         for row_index in range(rows):
             horizontal_divider = ""
             for column_index in range(route.columns):
-                if route.cell(row_index, column_index) == EnteredFrom.TOP or route.cell(row_index-1, column_index) == EnteredFrom.BOTTOM:
+                if route.cell(row_index, column_index) == EnteredFrom.TOP or (
+                        row_index > 0 and route.cell(row_index - 1, column_index) == EnteredFrom.BOTTOM):
                     horizontal_divider += "+   "
                 else:
                     horizontal_divider += "+---"
@@ -98,5 +99,6 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
 
