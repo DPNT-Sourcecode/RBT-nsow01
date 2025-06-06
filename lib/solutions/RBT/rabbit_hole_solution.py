@@ -135,8 +135,3 @@ def dig_route(rows, columns, digging_moves):
             route.move(direction)
     return route
 
-
-
-
-
-
