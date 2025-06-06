@@ -24,6 +24,10 @@ class RabbitHoleSolution:
         horizontal_scale = int(rendering_options.get("HORIZONTAL_SCALE", "3"))
         vertical_scale = int(rendering_options.get("VERTICAL_SCALE", "1"))
         rendering_theme = rendering_options.get("RENDER_THEME", "ASCII")
+        if rendering_theme == "UNICODE":
+            horizontal_wall = "━"
+        else:
+            horizontal_wall = "-"
 
         warren = ""
         for row_index in range(rows):
@@ -34,7 +38,7 @@ class RabbitHoleSolution:
                 elif route.has_tunnelling_at_top_of_cell(row_index, column_index):
                     horizontal_divider += "+" + " " * horizontal_scale
                 else:
-                    horizontal_divider += "+" + "-" * horizontal_scale
+                    horizontal_divider += "+" + horizontal_wall * horizontal_scale
 
             horizontal_divider += "+"
 
@@ -147,4 +151,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
