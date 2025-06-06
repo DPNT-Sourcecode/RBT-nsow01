@@ -80,8 +80,7 @@ class Plan:
         return self._rows_columns[row_index][column_index]
 
     def __str__(self):
-        return "\n".join(" ".join(cell for cell in row for row in self._rows_columns)
-        return "\n".join(" ".join(format_cell(cell) for cell in row) for row in self._rows_columns)
+        return "\n".join(" ".join(cell for cell in row) for row in self._rows_columns)
 
 
 class RouteMatrix:
@@ -180,4 +179,5 @@ def dig_route(rows, columns, digging_moves):
         for direction in digging_moves[1:]:
             route.move(direction)
     return route
+
 
